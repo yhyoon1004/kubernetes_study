@@ -3,9 +3,10 @@
 > 1. 로컬 PC에 VM 소프트웨어(VirtualBox) 설치 
 > 2. Vagrant 설치 (IaC : Infrastructure as Code)
 > 3. Vagrant 스크립트 다운, 실행
-> 4. 로컬에서 SSH 터미널 도구로 접속 생성된 VM에 접속
-> 5. 쿠버네티스 명령어로 생성된 pod 확인
-> 6. 로컬 PC에서 대시보드 접속
+> 4. 로컬에서 SSH로 VM에 접속, 쿠버네티스 명령어로 생성된 pod 확인
+> 5. 로컬 PC에서 대시보드 접속  
+> [그림 요약]
+> ![total](kube_install.png)
 
 ## 1. 로컬 PC에 VM 소프트웨어(VirtualBox) 설치
     Oracle VirtualBox 설치 >> https://www.virtualbox.org/
@@ -14,8 +15,9 @@
   
 ## 2. Vagrant 설치 (IaC : Infrastructure as Code)
     Vagrant 설치 >> https://developer.hashicorp.com/vagrant/install?product_intent=vagrant
-  Vagrant는 인프라 구조를 코드로 생성하는 도구.
-  Vagrant는 가상화 소프트웨어를 필요로함, 그래서 `(1)` 에서 오라클에서 제공하는 VirtualBox를 설치한 것
+  Vagrant는 인프라 구조를 코드로 생성하는 도구.  
+  Vagrant는 가상화 소프트웨어를 필요로함,   
+  그래서 `(1)` 에서 오라클에서 제공하는 VirtualBox를 설치한 것
   
 ## 3. Vagrant 스크립트 다운, 실행
   - windows > cmd 실행, 디렉토리생성  
@@ -29,3 +31,25 @@
     `vagrant plugin install vagrant-vbguest vagrant-disksize`
   - Vagrant 실행 (VM생성)  
     `vagrant up`
+
+## 4. 로컬에서 SSH로 VM에 접속, 쿠버네티스 명령어로 생성된 pod 확인
+- ssh 계정 정보
+  - private ip : 192.168.56.30 
+  - id : root
+  - password : vagrant
+- 쿠버네티스 명령어로 생성된 pod 확인
+  - `k get pods -A`
+![img.png](ssh_connect.png)
+
+## 5. 로컬 PC에서 대시보드 접속
+1. 브라우저에서 `https://192.168.56.30:30000/#/login` 로 접속  
+  
+
+2. 로그인 `생략` 클릭
+![img.png](dashboard_1.png)
+  
+
+3. 상단 gnb에서 `default` -> `모든 네임스페이스` 로 변경
+![img.png](dashboard_2.png)
+  
+설치 완료!
