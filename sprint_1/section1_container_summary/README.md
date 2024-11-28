@@ -44,9 +44,9 @@
 > ![img.png](container_history.png)
 
 ### 2-1 Container Orchestration 정리
-- `종류` : `kubernetes`, `dockerSwarm`, `nomad` 등의 컨테이너가 존재
+- `종류` : `kubernetes`, `dockerSwarm`, `nomad` 등이 존재
 - `컨테이너 오케스트레이션` : 컨테이너 애플리케이션의 배포, 업데이트, 롤백 및 삭제 과정을 자동화, 다수의 컨테이너를 클러스터에서 조율하며 실행
-- `kubernetes` : 아래에서 정리된 컨테이너 기술들을 지원함(docker, container-d, cri-o, rkt 등 -> 런타임임, CRI) 
+- `kubernetes` : 아래에서 정리된 컨테이너 기술들을 지원함(`docker`, `container-d`, `cri-o`, `rkt` 등 -> 런타임임, `CRI`) 
 
 ### 2-2 Container 정리
 - `chroot` : 계정과 파일, 네트워크 환경을 격리 시켜줌
