@@ -16,5 +16,5 @@
 > \_배포 파이프라인 단계적 구축\_   
 > - [ ] section_1 - Jenkins Pipeline  
 > - [ ] section_1 - Helm과 Kustomize 비교 사용  
-> - [ ] section_1 - Arg> -[ ]    
+> - [ ] section_1 - ArgoCD
 
