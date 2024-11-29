@@ -72,6 +72,7 @@
 
 ### 3-1 오케스트레이션 과정
 > [오케스트레이션 과정]
+> ![orche](orche.png)
 > ![orchestration](orchestration.png)  
 > 
 > - kube-api server : 쿠버네티스로 보내지는 모든 API 를 수신
@@ -115,3 +116,6 @@
 > 3. `CRI Plugin 적용 v1.27  `
 >    1. kubelet이 CRI를 가지고 구현체를 찾아 호출하는게 아닌 CRI Plugin을 호출하여 런타임을 호출하게 됨
 >    2. 런타임 추가 및 변경이 더 쉬워짐
+
+강의 : 쿠버네티스 어나더 클래스 (지상편) - Sprint 1, 2  
+https://www.inflearn.com/course/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EC%96%B4%EB%82%98%EB%8D%94-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%A7%80%EC%83%81%ED%8E%B8-sprint1/dashboard
