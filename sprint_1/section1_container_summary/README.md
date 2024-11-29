@@ -52,7 +52,7 @@
 - `chroot` : 계정과 파일, 네트워크 환경을 격리 시켜줌
 - `cgroup` : 컴퓨터 자원을 격리 시켜줌
 - `namespace` : 프로세스 자원을 격리 
-- `LXC(LinuXContainer)` :  위의 기술들을 집약한 기술
+- `LXC(LinuXContainer)` :  위의 기술들을 집약한 기술 (`chroot`+`cgroup`+`namespace`+`..`)
 - `docker` : `LXC`를 기반으로 만들어진 컨테이너 기술  
     - 초기 : 보안이 안좋았음, root권한으로 프로그램을 설치를 하고 실행하게 함
     - 이후 : 이를 보안함, 현재는 rootless 기능을 제공
@@ -69,3 +69,51 @@
     요약
     
 ---
+
+## 3. 오케스트레이션  
+
+### 3-1 오케스트레이션 과정
+> [오케스트레이션 과정]
+> ![orchestration](orchestration.png)  
+> 
+> - kube-api server : 쿠버네티스로 보내지는 모든 API 를 수신
+> - kubelet : 파드 생성을 담당
+> 1. `kubernetes`에 파드를 생성하는 명령을 보내면 `kube-api` 서버의 pod 생성 api를 호출한다.
+> 2. 그러면 `kube-api` 서버는 pod생성을 위해 `kubelet`으로 요청을 보낸다.
+> 3. `kubelet`은 `container runtime`에게 위에서 요청한 컨테이너들을 생성하라 요청한다.
+> 4. `container runtime` 은 요청 정보를 바탕으로 컨테이너를 생성한다.
+     컨테이너 2개를 한 파드에 만들라는 명령
+
+    1. kube-api 서버가 명령어 수신
+    2. kubelet 이 api로부터 지시를 수행, 내용을 보고 컨테이너 2개 생성이네?
+    3. Container Runtime에게 생성 요청을 2번 보냄
+    4. Container Runtime는 해당하는 런타임에 맞게 컨테이너 생성
+### 3-2 kubernetes 와 ContainerRuntime의 변화
+> [kubernetes의 변화 과정]
+> ![kube_history](kube_history.png)
+> - `ContainerRuntime` : 실제 컨테이너를 격리 환경에서 실행시켜주는 프로그램  
+>   - `high level`  : 사용자 친화적 런타임, low level 런타임을 기반으로 동작
+>   - `low level`  : 컨테이너 실행 중점 런타임
+>   - `runC` : OCI 규격을 맞춘 low level 컨테이너 런타임으로, LXC를 사용하지 않고 kernel level의 가상화기술을 사용  
+> 
+> -  ContainerRuntime 흐름  
+>   1. LXC기반으로 libcontainer low level 런타임이 만들어짐  
+>   2. libcontainer을 기반으로 high level 런타임인 docker 가 만들어짐
+>   3.  그러나 실제 컨테이너를 만들어주는 건 docker 안에있는 containerd임,containerd 가 libcontainer를 사용
+>   4. 주의: docker와 LXC 런타임 생성하는 컨테이너는 목적이 다름  
+>      - LXC : 운영체제를 컨테이너 가상화로 나누기 위한 목적, 다른 OS를 게스트 OS로 띄울 수 있음
+>      - docker : 각각의 어플리케이션들을 따로 배포하기 위한 목적
+> 1. `초기 v1`  
+>   1. `kubelet`은 컨테이너 런타임이 받을 수 있는 형태의 API를 호출
+>   2. 요청에 맞게 switch-case문이 존재하여 `docker`와 `rkt` 등등의 런타임을 구별하고 해당 런타임 모듈의 코드가 존재
+>   3. 문제 : 컨테이너 런타임이 늘어나면서 추가할때마다 `kubelet`에 해당 런타임 소스를 수정해줘야함
+> 2. `CRI 적용 v1.5`  
+>    1. 해당 런타임 소스를 추상화하여 인터페이스로 만듬 - CRI (Container Runtime Interface)
+>       1. `OCI`에서 컨테이너를 만들 때 지켜야할 규약을 정의함
+>       2. `docker`도 `OCI 규격`을 맞춘 low level container runtime을 만듬 `runC`
+>       3. `containerd`도 docker에 있던 기술이고 `runC`를 채택함
+>       4. `OCI 규격`을 맞춘 `rkt`도 등장 
+>    2. 문제 : 여전히 Container Runtime 추가되거나 변경될때 인터페이스를 수정해줘야함
+> 3. `CRI Plugin 적용 v1.27  `
+>    1. kubelet이 CRI를 가지고 구현체를 찾아 호출하는게 아닌 CRI Plugin을 호출하여 런타임을 호출하게 됨
+>    2. 런타임 추가 및 변경이 더 쉬워짐
