@@ -66,9 +66,7 @@
 - `fedora CoreOS` : CoreOS가 `RedHat`에 인수되면서 바뀜
 
 ---
-    요약
-    
----
+
 
 ## 3. 오케스트레이션  
 
