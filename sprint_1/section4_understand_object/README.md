@@ -2,14 +2,24 @@
     1. kube 서버에 작업용 디렉토리 생성
     2. 쿠버네티스 대시보드에서 해당 Object 생성
     3. 작업했던 object들 삭제
+> [Object 그림 요약]
+> ![object_draw.png](img_1.png)  
 
-Object도 컨텍스트같은 개념이 존재, 뎁스를 level 이라 칭하는 듯.  
-최상위 컨텍스트는 Cluster
-- Cluster
-  - Namespace
-  - PV
-    - Deployment
-    - Service
+> Object Level
+> - Cluster Level
+>   - Node
+>   - ClusterRole
+>   - ClusterRoleBinding
+>   - PersistentVolume (PV)
+> - Namespace Level
+>   - Pod
+>   - Deployment
+>   - Service
+>   - PersistentVolumeClaim (PVC)
+>   - ConfigMap
+>   - Secret
+
+
 
 
 ## 1. Kube 서버에 디렉토리 생성
