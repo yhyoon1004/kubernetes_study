@@ -125,6 +125,7 @@ Prometheus, Grafana 설치, Loki-Stack 연결
 ---
 
 ## 3. 쿠버네티스 대표 기능 (Traffic Routing, Self-Healing, AutoScaling, RollingUpdate)
+> ![img_36.png](img_36.png)
 - App에 지속적으로 트래픽 보내기
     ```shell
     while true; do curl http://192.168.56.30:31221/hostname; sleep 2; echo '';  done;
@@ -192,3 +193,28 @@ Prometheus, Grafana 설치, Loki-Stack 연결
   kubectl delete -n default svc app-1-2-2-1
   kubectl delete -n default hpa app-1-2-2-1
 ```
+
+## 4. 이전 개발 인프라와 쿠버네티스로 편해진 
+> [이전 서비스 개발시 환경 vs 쿠버네티스 환경]
+> ![img_37.png](img_37.png)  
+> 
+> 성능 테스트 후, 특정부분에서 트래픽 부하정도를 보고 증설요청  
+> 
+> [이전]
+> 1. vm담당자가 vm을 만들고 was, 개발언어 런타임, 네트워크, 저장소 설정등을 구축
+> 2. 웹서버 담당자가 해당 App의 IP 설정  
+>    (but 모니터링시스템과 연결하지 않았음으로 운영/관리자는 증설되었는지 확인불가)
+> 3. 웹서버 담당자가 해당 App 로드밸런싱 및 기타 설정
+> 4. 해당 VM을 모니터링 시스템에 연결  
+> 
+> [이후]
+> 1. 쿠버네티스 담당자가 pod 층설, 끝.
+
+### 인프라 환경을 코드로 확인,기록으로 관리
+이전에는 어떤 포트를 열거나 어떤 환경을 변경했을 때 기록으로 남기기가 어려움  
+쿠버네티스를 사용하면 VCS로 작업해 history나 인프라 내용을 확인가능, 이전 인프라환경을 복붙가능.
+![img_38.png](img_38.png)  
+
+
+강의 : 쿠버네티스 어나더 클래스 (지상편) - Sprint 1, 2  
+https://www.inflearn.com/course/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EC%96%B4%EB%82%98%EB%8D%94-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%A7%80%EC%83%81%ED%8E%B8-sprint1/dashboard
