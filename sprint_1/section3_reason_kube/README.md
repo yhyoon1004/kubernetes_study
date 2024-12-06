@@ -27,7 +27,7 @@
 > 3. 항상 App이 자동으로 반영되는 구조
 ---  
 
-## 2. 모니터링 설치 (Loki-Stack)
+## 2. 모니터링 설치 (Loki-Stack,Prometheus, Grafana 설치)
 Prometheus, Grafana 설치, Loki-Stack 연결 
 1. 이전에 올려둔 쿠버네티스 VM ssh 접속
 2. git 설치  
