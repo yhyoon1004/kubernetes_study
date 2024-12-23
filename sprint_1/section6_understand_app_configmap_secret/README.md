@@ -3,11 +3,11 @@
 > 개요  
 > 1.ConfigMap 확인하기  
 > 2.Secret 확인  
-> 3.컨테이너 내부 확인
-> 4.API 정보 확인
-> 5.ConfigMap 변경
-> 6.Secret 변경
-> 7.영역파괴의 주범 ConfigMap
+> 3.컨테이너 내부 확인  
+> 4.API 정보 확인  
+> 5.ConfigMap 변경  
+> 6.Secret 변경  
+> 7.영역파괴의 주범 ConfigMap  
 > 8.이름 때문에 기대가 너무 컸던 Secret
 
 ---

@@ -2,10 +2,10 @@
 >  sprint1  
 > - [x] section_1 - container 한방정리   
 > - [x] section_2 - kubernetes 설치  
-> - [ ] section_3 - kubernetes가 편한 이유  
-> - [ ] section_4 - Object 이해  
-> - [ ] section_5 - Application 기능으로 이해하기 (Probe)  
-> - [ ] section_6 - Application 기능으로 이해하기 (Configmap, Secret)  
+> - [x] section_3 - kubernetes가 편한 이유  
+> - [x] section_4 - Object 이해  
+> - [x] section_5 - Application 기능으로 이해하기 (Probe)  
+> - [x] section_6 - Application 기능으로 이해하기 (Configmap, Secret)  
 > - [ ] section_7 - Application 기능으로 이해하기 (PV/PVC, Deployment, Service, HPA)  
 > - [ ] section_8 - Component 동작으로 이해하기  
   
