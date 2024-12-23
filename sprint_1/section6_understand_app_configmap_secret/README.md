@@ -163,21 +163,23 @@
 ---
 
 ## 8. 이름 때문에 기대가 너무 컸던 Secret
-- Secret 
+- `Secret` 
   - `type` 속성(기본 = opaque) {암호화를 지원해주진 않음}  
     - `opaque`값 : 투명이라는 의미로 `ConfigMap`처럼 사용가능
     - `docker-registry` 값 : `private docker registry(개인용 dockerhub)`에서 이미지를 가져올때 사용  
     `docker-username , docker-password , docker-email , ..` 등의 데이터 값이 들어가야됨
     - `tls` 값 : Pod 마다 각각 다른 보안인증서를 넣을 때 사용
     -  `...`
-- Secret 중요 데이터 암호화 방안
-  1. Secret 에 대한 Object 생성을  파이프라인에 태워서 만들지 말고  
-     쿠버네티스 클러스터 내에서 직접 만들고 관리    
+  
+
+- `Secret` 중요 데이터 암호화 방안
+  1. `Secret에 대한 Object 생성`을  파이프라인에 태워서 만들지 말고  
+     쿠버네티스 `클러스터 내에서 직접` 만들고 관리    
      kubernetes 권한을 철저히 적용하면   
      타인의 Secret 을 조회하고 Pod에 들어가볼 수 없음
-  2. 특정 key 값을 통해 데이터 문자를 암호화하고  
+  2. 특정 `key 값을 통해 데이터 문자를 암호화`하고  
     오직 해당 app 안에서 해당 암호화된 문자를 복호화 해줄수 있는 로직처리  
      (이런 방식이면 configmap을 사용해도 ok)
-  3. 암호화 관리 서드파티 도구를 사용 (HashiCorp- `Vault`)  
+  3. `암호화 관리 서드파티` 도구를 사용 (HashiCorp - `Vault`)  
   관리자에 한해 개인id/pwd록 `Vault`에 접속 후, app에서 사용할 비밀번호 입력 
   app이 기동하면서 `Vault`에 비밀번호 요청, 관리자가 지정한 pod에만 값을 주도록 세팅
