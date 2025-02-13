@@ -13,12 +13,18 @@
   내 로컬 PC 위에서 동작하는 가상 머신을 추가하기 위해 설치하는 소프트웨어.   
   위 링크에서 다운받으면 됨.
   
+
+---
+
 ## 2. Vagrant 설치 (IaC : Infrastructure as Code)
     Vagrant 설치 >> https://developer.hashicorp.com/vagrant/install?product_intent=vagrant
   Vagrant는 인프라 구조를 코드로 생성하는 도구.  
   Vagrant는 가상화 소프트웨어를 필요로함,   
   그래서 `(1)` 에서 오라클에서 제공하는 VirtualBox를 설치한 것
   
+
+---
+
 ## 3. Vagrant 스크립트 다운, 실행
   - windows > cmd 실행, 디렉토리생성  
     `C:\Users\사용자> mkdir k8s && cd k8s`
@@ -32,6 +38,8 @@
   - Vagrant 실행 (VM생성)  
     `vagrant up`
 
+---
+
 ## 4. 로컬에서 SSH로 VM에 접속, 쿠버네티스 명령어로 생성된 pod 확인
 - ssh 계정 정보
   - private ip : 192.168.56.30 
@@ -40,6 +48,8 @@
 - 쿠버네티스 명령어로 생성된 pod 확인
   - `k get pods -A`
 ![img.png](ssh_connect.png)
+
+---
 
 ## 5. 로컬 PC에서 대시보드 접속
 1. 브라우저에서 `https://192.168.56.30:30000/#/login` 로 접속  
