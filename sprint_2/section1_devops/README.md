@@ -1,9 +1,11 @@
 # 데브옵스 정리
->1. 데브옵스 프로세스
+>1. 전체 프로세스
+>2. 직무 별 구분
+>3. 3. DevOps 외 Ops
 
 ---
 
-## 1. 데브옵스 프로세스
+## 1. 전체 프로세스
 - 전체 프로세스
 ![devops_process.png](devops_process.png)
 - `Develop` : `로컬PC`에서 `IDE`를 통해 소스코드를 개발  
@@ -23,3 +25,16 @@
 
 - `Infra` :  로컬PC 자원을 `VirtualBox` 를 통해 OS 레벨로 가상화하여  
   `GuestOS`로 `RockyLinux`를 올린 `마스터 노드`역할의 `가상머신` 
+
+---
+## 2. 직무 별 구분
+- `Develop` : 개발자
+- `CICD`: 개발자 / 데브옵스 엔지니어
+- `Operations` : 운영자 / 총괄
+
+---
+## 3. DevOps 외 Ops
+- `GitOps` : Git으로 파이프라인구성 및 이슈/협업관리/빌드/테스트/배포 역할
+- `DevSecOps` : 빠른 배포/보안 역할 
+- `MLOps` : 머신러닝 기반 Ops 데이터분석가와 개발자 사이의 역할
+- 기타 : `LLMOps`, `FinOps`, 등등..
